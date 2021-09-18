@@ -6,7 +6,7 @@ public class Note : MonoBehaviour
 {
     public int finger = 0; // set 0 if any finger usable
     public float readyTime = 1f;
-    public float stayTime = 0.5f;
+    public float stayTime = 0.1f;
     public bool active = false;
     [SerializeField] Collider2D circleCollider;
     [SerializeField] TMPro.TextMeshPro numText;

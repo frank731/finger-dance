@@ -17,6 +17,7 @@ namespace PathCreation.Examples
         {
             if (finger != 0 && collision.GetComponent<Finger>().fingerInd != finger) return;
             active = true;
+            pathFollower.start = true;
         }
 
         public void OnTriggerExit2D(Collider2D collision)
@@ -27,7 +28,11 @@ namespace PathCreation.Examples
 
         public void ReachedEnd()
         {
-            if (active) GameManager.Instance.UpdateScore(3);
+            if (active)
+            {
+                GameManager.Instance.UpdateScore(3);
+                Instantiate(GameManager.Instance.hitParticles, transform.position, transform.rotation);
+            }
             DestroyNote();
         }
 

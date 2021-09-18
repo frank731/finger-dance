@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
 {
     public int score = 0;
     public TextMeshProUGUI scoreText;
+    public GameObject hitParticles;
     public void Start()
     {
         UpdateScore(0);

@@ -38,6 +38,7 @@ public class Note : MonoBehaviour
     {
         if (finger != 0 && collision.GetComponent<Finger>().fingerInd != finger) return;
         GameManager.Instance.UpdateScore(1);
+        Instantiate(GameManager.Instance.hitParticles, transform.position, transform.rotation);
         DestroyNote();
     }
 

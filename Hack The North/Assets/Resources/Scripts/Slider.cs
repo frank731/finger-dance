@@ -17,7 +17,9 @@ namespace PathCreation.Examples
         {
             if (finger != 0 && collision.GetComponent<Finger>().fingerInd != finger) return;
             active = true;
+            if(!started) GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.hitsound, 0.5f);
             pathFollower.start = true;
+            started = true;
         }
 
         public void OnTriggerExit2D(Collider2D collision)
@@ -32,6 +34,7 @@ namespace PathCreation.Examples
             {
                 GameManager.Instance.UpdateScore(3);
                 Instantiate(GameManager.Instance.hitParticles, transform.position, transform.rotation);
+                GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.hitsound, 0.5f);
             }
             DestroyNote();
         }

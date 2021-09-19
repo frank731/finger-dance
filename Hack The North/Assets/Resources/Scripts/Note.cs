@@ -8,6 +8,7 @@ public class Note : MonoBehaviour
     public float readyTime = 1f;
     public float stayTime = 0.1f;
     public bool active = false;
+    public bool started = false;
     [SerializeField] Collider2D circleCollider;
     [SerializeField] TMPro.TextMeshPro numText;
 
@@ -31,13 +32,14 @@ public class Note : MonoBehaviour
     public IEnumerator DeleteCircle()
     {
         yield return new WaitForSeconds(stayTime);
-        if (!active) DestroyNote();
+        if (!started) DestroyNote();
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (finger != 0 && collision.GetComponent<Finger>().fingerInd != finger) return;
         GameManager.Instance.UpdateScore(1);
+        GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.hitsound, 0.5f);
         Instantiate(GameManager.Instance.hitParticles, transform.position, transform.rotation);
         DestroyNote();
     }
